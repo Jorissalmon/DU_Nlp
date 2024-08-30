@@ -94,6 +94,9 @@ if uploaded_file is not None:
         st.subheader("Filtered Data (5 rows)")
         st.write(filtered_data.head())
 
+        # Add predictions to the DataFrame
+        filtered_data['Sentiment_Prediction'] = filtered_data['Text'].apply(lambda x: predict_sentiment(x, model_rf))
+
         # Add a selector for choosing the type of graph
         chart_type = st.selectbox(
             "Choose the type of graph",
@@ -126,11 +129,12 @@ if uploaded_file is not None:
 
         # Export results with predictions
         st.subheader("Download Results")
-        result_file = filtered_data.to_excel("result_with_predictions.xlsx", index=False)
+        output_file = "result_with_predictions.xlsx"
+        filtered_data.to_excel(output_file, index=False)
         st.download_button(
             label="Download Excel file with predictions",
-            data=open("result_with_predictions.xlsx", "rb").read(),
-            file_name="result_with_predictions.xlsx",
+            data=open(output_file, "rb").read(),
+            file_name=output_file,
             mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
         )
 
