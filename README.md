@@ -1,6 +1,6 @@
 ---
 title: "Projet DU Sorbonne Analytics"
-author: "Nolwenn, Zakaria & [Votre Nom]"
+author: "Nolwenn, Zakaria & Joris"
 output: github_document
 ---
 
