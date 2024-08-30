@@ -25,12 +25,13 @@ Le projet est organisé en plusieurs fichiers et dossiers, chacun ayant un rôle
   
 ## Installation
 
-Pour exécuter ce projet localement, suivez les étapes suivantes : **
-git clone https://github.com/votre-utilisateur/votre-projet.git **
-cd votre-projet
+Pour exécuter ce projet localement, suivez les étapes suivantes :  
+git clone https://github.com/votre-utilisateur/votre-projet.git  
+cd votre-projet  
 
-### Créer et activer un environnement virtuel :
-python -m venv myenv
+### Créer et activer un environnement virtuel :  
+python -m venv myenv  
+
 source myenv/bin/activate  # Pour Linux/Mac
 myenv\Scripts\activate  # Pour Windows
 
