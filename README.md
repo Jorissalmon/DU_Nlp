@@ -31,35 +31,34 @@ cd votre-projet
 
 ### Créer et activer un environnement virtuel :  
 python -m venv myenv  
+source myenv/bin/activate  # Pour Linux/Mac  
+myenv\Scripts\activate  # Pour Windows  
 
-source myenv/bin/activate  # Pour Linux/Mac
-myenv\Scripts\activate  # Pour Windows
+### Installer les dépendances :  
+pip install -r requirements.txt  
 
-### Installer les dépendances :
-pip install -r requirements.txt
+### Télécharger les ressources NLTK nécessaires :  
+nltk.download('stopwords')  
+nltk.download('punkt')  
+nltk.download('wordnet')  
 
-### Télécharger les ressources NLTK nécessaires :
-nltk.download('stopwords')
-nltk.download('punkt')
-nltk.download('wordnet')
+## Exécution  
+### 1. Entraînement des modèles  
+Pour entraîner les modèles de machine learning sur vos données textuelles, exécutez le script suivant :  
+python Initialisation_model_NE_PAS_EXEC.py  
+Ce script entraîne plusieurs modèles, sauvegarde les meilleurs modèles sous forme de fichiers .joblib et affiche les performances de chaque modèle.  
 
-## Exécution
-### 1. Entraînement des modèles
-Pour entraîner les modèles de machine learning sur vos données textuelles, exécutez le script suivant :
-python Initialisation_model_NE_PAS_EXEC.py
-Ce script entraîne plusieurs modèles, sauvegarde les meilleurs modèles sous forme de fichiers .joblib et affiche les performances de chaque modèle.
+### 2. Lancer l'application Streamlit  
+Vous pouvez utiliser l'application Streamlit pour effectuer des analyses de sentiment sur des fichiers de données ou des textes personnalisés. Pour lancer l'application :  
+streamlit run app.py  
 
-### 2. Lancer l'application Streamlit
-Vous pouvez utiliser l'application Streamlit pour effectuer des analyses de sentiment sur des fichiers de données ou des textes personnalisés. Pour lancer l'application :
-streamlit run app.py
+### 3. Utilisation de l'application  
+Analyse de fichier Excel : Vous pouvez charger un fichier Excel contenant des données textuelles à analyser. L'application vous permet de filtrer les données par hashtag et par plateforme, puis de visualiser l'évolution des mentions.  
+Analyse de texte personnalisé : Vous pouvez entrer un texte personnalisé pour analyser son sentiment à l'aide du modèle entraîné.  
 
-### 3. Utilisation de l'application
-Analyse de fichier Excel : Vous pouvez charger un fichier Excel contenant des données textuelles à analyser. L'application vous permet de filtrer les données par hashtag et par plateforme, puis de visualiser l'évolution des mentions.
-Analyse de texte personnalisé : Vous pouvez entrer un texte personnalisé pour analyser son sentiment à l'aide du modèle entraîné.
-Résultats
-Les résultats de l'analyse sont sauvegardés dans un fichier Excel téléchargeable via l'application Streamlit. Le rapport de classification et les scores de validation croisée sont affichés pour chaque modèle testé.
+Les résultats de l'analyse sont sauvegardés dans un fichier Excel téléchargeable via l'application Streamlit. Le rapport de classification et les scores de validation croisée sont affichés pour chaque modèle testé.  
 
-Collaborateurs
-Nolwenn
-Zakaria
-Joris
+Collaborateurs :  
+Nolwenn  
+Zakaria  
+Joris  
