@@ -58,7 +58,7 @@ Analyse de texte personnalisé : Vous pouvez entrer un texte personnalisé pour 
 
 Les résultats de l'analyse sont sauvegardés dans un fichier Excel téléchargeable via l'application Streamlit. Le rapport de classification et les scores de validation croisée sont affichés pour chaque modèle testé.  
 
-_Collaborateurs_:  
+*Collaborateurs*:  
 Nolwenn  
 Zakaria  
 Joris  
