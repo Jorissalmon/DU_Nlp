@@ -31,7 +31,7 @@ def preprocess_text(text):
     return cleaned_text
 
 # Charger le modèle et le vectoriseur TF-IDF
-model_rf = load('modeles/Random Forest_model.joblib')
+model_rf = load('modeles/TF-IDF_Gradient Boosting_model.joblib')
 tfidf = load('modeles/vectorizer.joblib')
 
 # Fonction de prédiction du sentiment
