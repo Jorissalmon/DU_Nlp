@@ -49,9 +49,7 @@ def extract_hashtags(text):
 # Fonction pour télécharger le fichier Excel
 def download_file():
     output_file = "result_with_predictions.xlsx"
-    # Sauvegarder les résultats dans un fichier Excel
     st.session_state.filtered_data_with_predictions.to_excel(output_file, index=False)
-    # Ouvrir le fichier pour le téléchargement
     with open(output_file, "rb") as f:
         st.sidebar.download_button(
             label="Download Excel file with predictions",
@@ -73,8 +71,13 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# Palette de couleurs uniforme
+# Palette de couleurs pastel
 color_palette = ['#FF9999', '#66B2FF', '#99FF99']
+sentiment_colors = {
+    'positif': '#99FF99',  # Couleur pastel pour positif
+    'négatif': '#FF9999',  # Couleur pastel pour négatif
+    'neutre': '#66B2FF'    # Couleur pastel pour neutre
+}
 
 # Titre principal
 st.title("Sentiment and Hashtag Analysis by Platform")
@@ -82,33 +85,19 @@ st.title("Sentiment and Hashtag Analysis by Platform")
 # Initialiser l'état de session
 if 'data' not in st.session_state:
     st.session_state.data = None
-
 if 'filtered_data_with_predictions' not in st.session_state:
     st.session_state.filtered_data_with_predictions = None
-
 if 'all_hashtags' not in st.session_state:
     st.session_state.all_hashtags = []
-
 if 'filtered_data_grouped' not in st.session_state:
     st.session_state.filtered_data_grouped = None
-
 if 'prediction' not in st.session_state:
     st.session_state.prediction = None
+
 
 # Charger le fichier Excel
 st.header("Upload Your Excel File")
 uploaded_file = st.file_uploader("Choose an Excel file", type="xlsx")
-
-# Boîte de texte pour tester le modèle et bouton de téléchargement dans la barre latérale
-st.sidebar.header("Test the Model")
-input_text = st.sidebar.text_area("Enter a text to predict sentiment")
-
-if st.sidebar.button("Analyze"):
-    if input_text:
-        st.session_state.prediction = predict_sentiment(input_text, model_rf)
-        st.sidebar.write(f"Predicted Sentiment: **{st.session_state.prediction}**")
-    else:
-        st.sidebar.write("Please enter a text.")
 
 if uploaded_file is not None:
     if st.session_state.data is None:
@@ -133,11 +122,24 @@ if uploaded_file is not None:
         # Ajouter l'option "Tous les hashtags"
         st.session_state.all_hashtags = ["Tous les hashtags"] + sorted(list(all_hashtags))
 
-    # Bouton pour télécharger les résultats
+
+# Boîte de texte pour tester le modèle et bouton d'analyse dans la barre latérale
+st.sidebar.header("Test the Model")
+input_text = st.sidebar.text_area("Enter a text to predict sentiment")
+
+if st.sidebar.button("Analyze"):
+    if input_text:
+        st.session_state.prediction = predict_sentiment(input_text, model_rf)
+        st.sidebar.write(f"Predicted Sentiment: **{st.session_state.prediction}**")
+    else:
+        st.sidebar.write("Please enter a text.")
+
+# Si des données sont présentes dans la session
+if st.session_state.data is not None:
+     # Bouton pour télécharger les résultats
     st.sidebar.write("Download the Excel file containing the data with sentiment predictions.")
     if st.sidebar.button("Download Results"):
         download_file()
-
     # Sélection des plateformes
     st.header("Select Platforms")
     platforms = st.multiselect("Choose platforms", st.session_state.data['Platform'].unique())
@@ -170,7 +172,7 @@ if uploaded_file is not None:
         chart_type = st.selectbox("Choose the type of graph", ["Single Curve", "Curves by Platform"])
 
         # Créer une nouvelle figure
-        plt.subplots(figsize=(14, 4))
+        plt.figure(figsize=(14, 4))
 
         if chart_type == "Single Curve":
             # Grouper les données par mois et année, en combinant les comptes pour toutes les plateformes
@@ -197,7 +199,13 @@ if uploaded_file is not None:
         st.sidebar.subheader("Sentiment Distribution")
         sentiment_counts = filtered_data['Sentiment_Prediction'].value_counts()
         plt.figure(figsize=(6, 6))
-        plt.pie(sentiment_counts, labels=sentiment_counts.index, autopct='%1.1f%%', startangle=140, colors=color_palette)
+        plt.pie(
+            sentiment_counts,
+            labels=sentiment_counts.index,
+            autopct='%1.1f%%',
+            startangle=140,
+            colors=[sentiment_colors.get(label, '#BEBEBE') for label in sentiment_counts.index]  # Couleur par défaut si non trouvée
+        )
         st.sidebar.pyplot(plt.gcf())
 
         # Diagrammes Nuages de mots
