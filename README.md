@@ -16,8 +16,6 @@ L'objectif de ce projet est de développer un modèle d'analyse de sentiment à 
 
 Le projet est organisé en plusieurs fichiers et dossiers, chacun ayant un rôle spécifique dans la construction et l'évaluation du modèle de machine learning.
 
-- **data/** : Ce dossier contient les jeux de données utilisés pour l'entraînement et les tests du modèle.
-- **notebooks/** : Contient les notebooks Jupyter utilisés pour l'exploration des données et le développement initial des modèles.
 - **modeles/** : Ce dossier contient les modèles entraînés et les objets sérialisés (e.g., vectoriseur TF-IDF, modèles joblib).
 - **Initialisation_model_NE_PAS_EXEC.py** : Script Python principal pour l'entraînement des modèles et l'évaluation des performances.
 - **app.py** : Application Streamlit permettant d'effectuer une analyse de sentiment sur des données texte et de visualiser les résultats.
