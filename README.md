@@ -24,8 +24,8 @@ Le projet est organisé en plusieurs fichiers et dossiers, chacun ayant un rôle
 ## Installation
 
 Pour exécuter ce projet localement, suivez les étapes suivantes :  
-git clone https://github.com/votre-utilisateur/votre-projet.git  
-cd votre-projet  
+git clone https://github.com/votre-utilisateur/DU_Nlp.git  
+cd DU_Nlp. 
 
 ### Créer et activer un environnement virtuel :  
 python -m venv myenv  
